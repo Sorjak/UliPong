@@ -14,6 +14,8 @@
 
 #include "Systems/RenderSystem.h"
 
+#include "Entities/BallEntity.h"
+
 
 using namespace std;
 

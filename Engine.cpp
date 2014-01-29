@@ -50,6 +50,8 @@ void Engine::initSystems() {
 }
 
 void Engine::initEntities() {
+	BaseEntity* ball = new BallEntity(getNextId());
+	addEntity(ball);
 
 }
 

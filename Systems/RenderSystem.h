@@ -5,6 +5,9 @@
 
 #include "BaseSystem.h"
 
+#include "../Components/RenderComponent.h"
+#include "../Components/PositionComponent.h"
+
 class RenderSystem : public BaseSystem
 {
 public:
