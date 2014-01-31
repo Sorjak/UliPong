@@ -5,6 +5,7 @@ RenderSystem::RenderSystem(int width, int height, const char* title)
 	mWidth  = width;
 	mHeight = height;
 	mWindow.create(sf::VideoMode(width, height), title);
+	mWindow.setFramerateLimit(60);
 
 	mFont.loadFromFile("media/SourceSansPro-Regular.ttf");
 
@@ -21,10 +22,12 @@ void RenderSystem::update() {
 
 	for (size_t i = 0; i < entityList.size(); i++) {
 		BaseEntity* current = entityList[i];
-		PositionComponent* pos = (PositionComponent*) current->getComponent("position");
+		PhysicsBallComponent* phy = (PhysicsBallComponent*) current->getComponent("physics");
 		RenderComponent* ren = (RenderComponent*) current->getComponent("render");
 
-		sf::Drawable* todraw = ren->getDrawObject();
+		sf::Sprite* todraw = ren->mDrawObject;
+
+		todraw->setPosition(phy->mBody->GetPosition().x, phy->mBody->GetPosition().y);
 		
 		mWindow.draw(*todraw);
 	}

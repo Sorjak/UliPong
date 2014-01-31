@@ -1,6 +1,9 @@
 #include "Engine.h"
 
 Engine::Engine() {
+	b2Vec2 Gravity(0.f, 9.8f);
+	mWorld = new b2World(Gravity);
+	mWorld->SetContinuousPhysics(true);
 	initGame();
 	initSystems();
 	initEntities();
@@ -14,7 +17,7 @@ Engine::~Engine() {
 	//for (size_t i = 0; i < entityList.size(); i++) {
 	//	delete entityList[i];
 	//}
-
+	delete mWorld;
 }
 
 void Engine::startGame() {
@@ -44,14 +47,21 @@ void Engine::initGame() {
 }
 
 void Engine::initSystems() {
-	BaseSystem *render = new RenderSystem(SCREEN_WIDTH, SCREEN_HEIGHT, "UliPong");
+	BaseSystem* render = new RenderSystem(SCREEN_WIDTH, SCREEN_HEIGHT, "UliPong");
 	render->init(this);
 	systemList["renders"] = render;
+
+	BaseSystem* physics = new PhysicsSystem(mWorld);
+	physics->init(this);
+	systemList["physics"] = physics;
 }
 
 void Engine::initEntities() {
-	BaseEntity* ball = new BallEntity(getNextId());
-	addEntity(ball);
+	BaseEntity* physics_ball = new PhysicsBallEntity(getNextId(), mWorld);
+	addEntity(physics_ball);
+
+	//BaseEntity* ball = new BallEntity(getNextId());
+	//addEntity(ball);
 
 }
 
@@ -94,6 +104,7 @@ long Engine::getNextId() {
 }
 
 float Engine::getFPS() {
-	RenderSystem* rs = (RenderSystem*)systemList["render"];
-	return rs->getCurrentFPS();
+	//RenderSystem rs = (RenderSystem)systemList["render"];
+	//return rs.getCurrentFPS();
+	return 60;
 }

@@ -1,16 +1,16 @@
 #pragma once
 
-#include "../Vector2D.h"
+#include "Box2D/Box2D.h"
 #include "basecomponent.h"
 class PositionComponent :
 	public BaseComponent
 {
 public:
 	PositionComponent(float x, float y);
-	Vector2D* getPosition();
+	b2Vec2* getPosition();
 	void setPosition(float x, float y);
-	void setPosition(Vector2D* vec);
+	void setPosition(b2Vec2* vec);
 
-	Vector2D* mPosition;
+	b2Vec2* mPosition;
 };
 

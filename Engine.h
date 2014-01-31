@@ -7,14 +7,16 @@
 #include <map>
 
 #include "SFML/System.hpp"
+#include "Box2D/Box2D.h"
 
 #include "Components/BaseComponent.h"
 #include "Entities/BaseEntity.h"
 #include "Systems/BaseSystem.h"
 
 #include "Systems/RenderSystem.h"
+#include "Systems/PhysicsSystem.h"
 
-#include "Entities/BallEntity.h"
+#include "Entities/PhysicsBallEntity.h"
 
 
 using namespace std;
@@ -41,6 +43,7 @@ private:
 
 	int running;
 	int lastID;
+	b2World* mWorld;
 	map<string, BaseSystem*> systemList;
 	vector<BaseEntity*> entityList;
 	vector<BaseEntity*> toadd;

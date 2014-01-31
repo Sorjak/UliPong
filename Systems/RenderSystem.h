@@ -6,7 +6,7 @@
 #include "BaseSystem.h"
 
 #include "../Components/RenderComponent.h"
-#include "../Components/PositionComponent.h"
+#include "../Components/PhysicsBallComponent.h"
 
 class RenderSystem : public BaseSystem
 {

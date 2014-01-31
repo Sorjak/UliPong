@@ -8,11 +8,9 @@ class RenderComponent :
 	public BaseComponent
 {
 public:
-	RenderComponent(sf::Drawable* drawObject);
-	sf::Drawable* getDrawObject();
-	void setDrawObject(sf::Drawable* drawObject);
+	RenderComponent(string filename, float x, float y, int w, int h);
+	sf::Sprite* getDrawObject();
 
-
-	sf::Drawable* mDrawObject;
+	sf::Sprite* mDrawObject;
 };
 
