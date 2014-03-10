@@ -22,12 +22,12 @@ void RenderSystem::update() {
 
 	for (size_t i = 0; i < entityList.size(); i++) {
 		BaseEntity* current = entityList[i];
-		PhysicsBallComponent* phy = (PhysicsBallComponent*) current->getComponent("physics");
+		PhysicsBoxComponent* phy = (PhysicsBoxComponent*) current->getComponent("physics");
 		RenderComponent* ren = (RenderComponent*) current->getComponent("render");
 
 		sf::Sprite* todraw = ren->mDrawObject;
 
-		todraw->setPosition(phy->mBody->GetPosition().x, phy->mBody->GetPosition().y);
+		todraw->setPosition(30.f * phy->mBody->GetPosition().x, 30.f * phy->mBody->GetPosition().y);
 		
 		mWindow.draw(*todraw);
 	}

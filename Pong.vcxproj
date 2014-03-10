@@ -90,6 +90,8 @@
     <ClCompile Include="Components\RenderComponent.cpp" />
     <ClCompile Include="Entities\PhysicsBallEntity.cpp" />
     <ClCompile Include="Components\PhysicsBallComponent.cpp" />
+    <ClCompile Include="Components\PhysicsBoxComponent.cpp" />
+    <ClCompile Include="Entities\PhysicsBoxEntity.cpp" />
     <ClCompile Include="Systems\PhysicsSystem.cpp" />
     <ClCompile Include="Systems\RenderSystem.cpp" />
     <ClCompile Include="Systems\BaseSystem.cpp" />
@@ -104,6 +106,8 @@
     <ClInclude Include="Components\RenderComponent.h" />
     <ClInclude Include="Entities\PhysicsBallEntity.h" />
     <ClInclude Include="Components\PhysicsBallComponent.h" />
+    <ClInclude Include="Components\PhysicsBoxComponent.h" />
+    <ClInclude Include="Entities\PhysicsBoxEntity.h" />
     <ClInclude Include="Systems\PhysicsSystem.h" />
     <ClInclude Include="Systems\RenderSystem.h" />
     <ClInclude Include="Systems\BaseSystem.h" />

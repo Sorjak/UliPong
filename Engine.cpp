@@ -57,8 +57,11 @@ void Engine::initSystems() {
 }
 
 void Engine::initEntities() {
-	BaseEntity* physics_ball = new PhysicsBallEntity(getNextId(), mWorld);
-	addEntity(physics_ball);
+	//BaseEntity* physics_ball = new PhysicsBallEntity(getNextId(), mWorld);
+	//addEntity(physics_ball);
+
+	BaseEntity* physics_box = new PhysicsBoxEntity(getNextId(), mWorld);
+	addEntity(physics_box);
 
 	//BaseEntity* ball = new BallEntity(getNextId());
 	//addEntity(ball);

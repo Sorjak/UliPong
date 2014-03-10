@@ -17,6 +17,7 @@
 #include "Systems/PhysicsSystem.h"
 
 #include "Entities/PhysicsBallEntity.h"
+#include "Entities/PhysicsBoxEntity.h"
 
 
 using namespace std;
