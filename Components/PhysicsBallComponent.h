@@ -8,7 +8,7 @@ class PhysicsBallComponent :
 	public BaseComponent
 {
 public:
-	PhysicsBallComponent(b2World* world, b2Vec2 startpos);
+	PhysicsBallComponent(b2World* world, b2Vec2 startpos, b2BodyType type);
 
 	b2Body* mBody;
 };

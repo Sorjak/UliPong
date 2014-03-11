@@ -1,10 +1,10 @@
 #include "PhysicsBallComponent.h"
 
 
-PhysicsBallComponent::PhysicsBallComponent(b2World* world, b2Vec2 startpos) {
+PhysicsBallComponent::PhysicsBallComponent(b2World* world, b2Vec2 startpos, b2BodyType type) {
 	b2BodyDef mBodyDef;
 	mBodyDef.position = startpos;
-	mBodyDef.type = b2_dynamicBody;
+	mBodyDef.type = type;
 	mBody = world->CreateBody(&mBodyDef);
 
 	b2CircleShape mShape;

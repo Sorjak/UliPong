@@ -11,10 +11,10 @@
 class RenderSystem : public BaseSystem
 {
 public:
-	RenderSystem(int width, int height, const char* title);
+	RenderSystem(sf::RenderWindow* window);
 	~RenderSystem();
 
-	sf::RenderWindow mWindow;
+	sf::RenderWindow* mWindow;
 	sf::Clock mClock;
 
 	sf::Font mFont;

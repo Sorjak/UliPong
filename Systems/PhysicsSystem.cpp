@@ -12,5 +12,5 @@ PhysicsSystem::~PhysicsSystem() {
 
 void PhysicsSystem::update() {
 	mWorld->Step(1/60.f, 8, 3);
-	printf("Bodies: %d\n", mWorld->GetBodyCount());
+	//printf("Bodies: %d\n", mWorld->GetBodyCount());
 }

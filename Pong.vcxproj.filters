@@ -57,6 +57,12 @@
     <ClCompile Include="Entities\PhysicsBoxEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Entities\PhysicsWallEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\InputSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -98,9 +104,18 @@
     <ClInclude Include="Entities\PhysicsBoxEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Entities\PhysicsWallEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\InputSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="media\circle.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="media\wall.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

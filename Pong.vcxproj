@@ -92,6 +92,8 @@
     <ClCompile Include="Components\PhysicsBallComponent.cpp" />
     <ClCompile Include="Components\PhysicsBoxComponent.cpp" />
     <ClCompile Include="Entities\PhysicsBoxEntity.cpp" />
+    <ClCompile Include="Entities\PhysicsWallEntity.cpp" />
+    <ClCompile Include="Systems\InputSystem.cpp" />
     <ClCompile Include="Systems\PhysicsSystem.cpp" />
     <ClCompile Include="Systems\RenderSystem.cpp" />
     <ClCompile Include="Systems\BaseSystem.cpp" />
@@ -108,6 +110,8 @@
     <ClInclude Include="Components\PhysicsBallComponent.h" />
     <ClInclude Include="Components\PhysicsBoxComponent.h" />
     <ClInclude Include="Entities\PhysicsBoxEntity.h" />
+    <ClInclude Include="Entities\PhysicsWallEntity.h" />
+    <ClInclude Include="Systems\InputSystem.h" />
     <ClInclude Include="Systems\PhysicsSystem.h" />
     <ClInclude Include="Systems\RenderSystem.h" />
     <ClInclude Include="Systems\BaseSystem.h" />
@@ -117,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="media\circle.jpg" />
+    <Image Include="media\wall.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

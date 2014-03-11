@@ -4,6 +4,10 @@ Engine::Engine() {
 	b2Vec2 Gravity(0.f, 9.8f);
 	mWorld = new b2World(Gravity);
 	mWorld->SetContinuousPhysics(true);
+
+	mWindow.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "UliPong");
+	mWindow.setFramerateLimit(60);
+
 	initGame();
 	initSystems();
 	initEntities();
@@ -25,7 +29,7 @@ void Engine::startGame() {
 	
 	while (running) {
 		// Now let's iterate through the systems map and update everyone
-		for(map<string,BaseSystem*>::iterator it = systemList.begin(); it != systemList.end(); ++it) {
+		for(vector<pair<string,BaseSystem*>>::iterator it = systemList.begin(); it != systemList.end(); ++it) {
 			it->second->update();
 		}
 
@@ -47,35 +51,50 @@ void Engine::initGame() {
 }
 
 void Engine::initSystems() {
-	BaseSystem* render = new RenderSystem(SCREEN_WIDTH, SCREEN_HEIGHT, "UliPong");
-	render->init(this);
-	systemList["renders"] = render;
+	BaseSystem* input = new RenderSystem(&mWindow);
+	input->init(this);
+	systemList.push_back(make_pair("input", input));
 
 	BaseSystem* physics = new PhysicsSystem(mWorld);
 	physics->init(this);
-	systemList["physics"] = physics;
+	systemList.push_back(make_pair("physics", physics));
+
+	BaseSystem* render = new RenderSystem(&mWindow);
+	render->init(this);
+	systemList.push_back(make_pair("renders", render));
 }
 
 void Engine::initEntities() {
-	//BaseEntity* physics_ball = new PhysicsBallEntity(getNextId(), mWorld);
-	//addEntity(physics_ball);
+	for (int i = 0; i < SCREEN_WIDTH / 200; i++) {
+		b2Vec2 box_start(200*i, 10);
+		b2Vec2 box_dims(50, 50);
 
-	BaseEntity* physics_box = new PhysicsBoxEntity(getNextId(), mWorld);
-	addEntity(physics_box);
+		BaseEntity* physics_box = new PhysicsBoxEntity(getNextId(), mWorld, box_start, box_dims);
+		addEntity(physics_box);
+	}
 
-	//BaseEntity* ball = new BallEntity(getNextId());
-	//addEntity(ball);
+	b2Vec2 wall_start(0, SCREEN_HEIGHT - 20);
+	b2Vec2 wall_dims(SCREEN_WIDTH, 20);
+
+	BaseEntity* physics_wall = new PhysicsWallEntity(getNextId(), mWorld, wall_start, wall_dims);
+	addEntity(physics_wall);
+
 
 }
 
 void Engine::addEntitiesToSystems() {
 	for(size_t i = 0; i < toadd.size(); i++) {
-		vector<string> entitySystems = toadd[i]->systemFlags;
+		vector<string> entitySystems = toadd[i]->systemFlags; // All of the system flags for the entity we want to add
 		for (size_t j = 0; j < entitySystems.size(); j++) {
-			systemList[entitySystems[j]]->registerEntity(toadd[i]);
+			string systemString = entitySystems[j]; // The current system flag we are trying to match
+			for (size_t k = 0; k < systemList.size(); k++) {
+				if (systemList[k].first == systemString) { // We've found a system that matches the system flag. 
+					systemList[k].second->registerEntity(toadd[i]); // Add entity (toadd[i]) to the system.
+				}
+			}
 		}
 	}
-	toadd.clear();
+	toadd.clear(); // Added all entities, clear the queue.
 }
 
 void Engine::addEntity(BaseEntity* e) {
@@ -94,7 +113,7 @@ void Engine::removeEntity(BaseEntity* e) {
 		vector<BaseEntity*>::iterator it = entityList.begin()+pos;
 		entityList.erase(it);
 
-		for(map<string,BaseSystem*>::iterator itx = systemList.begin(); itx != systemList.end(); ++itx) {
+		for(vector<pair<string,BaseSystem*>>::iterator itx = systemList.begin(); itx != systemList.end(); ++itx) {
 			itx->second->removeEntity(e);
 		}
 		delete e;

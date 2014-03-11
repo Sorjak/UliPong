@@ -5,6 +5,8 @@
 
 #include <vector>
 #include <map>
+#include <string>
+#include <utility>
 
 #include "SFML/System.hpp"
 #include "Box2D/Box2D.h"
@@ -16,6 +18,7 @@
 #include "Systems/RenderSystem.h"
 #include "Systems/PhysicsSystem.h"
 
+#include "Entities/PhysicsWallEntity.h"
 #include "Entities/PhysicsBallEntity.h"
 #include "Entities/PhysicsBoxEntity.h"
 
@@ -45,7 +48,8 @@ private:
 	int running;
 	int lastID;
 	b2World* mWorld;
-	map<string, BaseSystem*> systemList;
+	sf::RenderWindow mWindow;
+	vector<pair<string, BaseSystem*>> systemList;
 	vector<BaseEntity*> entityList;
 	vector<BaseEntity*> toadd;
 };

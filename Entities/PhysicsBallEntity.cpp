@@ -7,9 +7,8 @@ PhysicsBallEntity::PhysicsBallEntity(long id, b2World* world){
 	systemFlags.push_back("renders");
 	systemFlags.push_back("physics");
 
-	b2Vec2 startpos(10, 10);
-	componentMap["physics"] = new PhysicsBallComponent(world, startpos);
+	//componentMap["physics"] = new PhysicsBallComponent(world, startpos);
 
-	componentMap["render"] = new RenderComponent("media/circle.jpg", startpos.x, startpos.y, 50, 50);
+	//componentMap["render"] = new RenderComponent("media/circle.jpg", startpos.x, startpos.y, 50, 50);
 }
 

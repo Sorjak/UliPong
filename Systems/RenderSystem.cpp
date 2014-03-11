@@ -1,12 +1,8 @@
 #include "RenderSystem.h"
 
-RenderSystem::RenderSystem(int width, int height, const char* title)
+RenderSystem::RenderSystem(sf::RenderWindow* window)
 {
-	mWidth  = width;
-	mHeight = height;
-	mWindow.create(sf::VideoMode(width, height), title);
-	mWindow.setFramerateLimit(60);
-
+	mWindow = window;
 	mFont.loadFromFile("media/SourceSansPro-Regular.ttf");
 
 	fpsTimer = mClock.getElapsedTime().asMilliseconds();
@@ -18,7 +14,7 @@ RenderSystem::~RenderSystem() {}
 
 void RenderSystem::update() {
 	frameStartTime = mClock.getElapsedTime().asMilliseconds();
-	mWindow.clear();
+	mWindow->clear();
 
 	for (size_t i = 0; i < entityList.size(); i++) {
 		BaseEntity* current = entityList[i];
@@ -29,7 +25,7 @@ void RenderSystem::update() {
 
 		todraw->setPosition(30.f * phy->mBody->GetPosition().x, 30.f * phy->mBody->GetPosition().y);
 		
-		mWindow.draw(*todraw);
+		mWindow->draw(*todraw);
 	}
 
     
@@ -45,9 +41,9 @@ void RenderSystem::update() {
 	string fpsString = "FPS: ";
 	fpsString += to_string(getCurrentFPS());
 	sf::Text fpstext (fpsString, mFont);
-	mWindow.draw(fpstext);
+	mWindow->draw(fpstext);
 
-	mWindow.display();
+	mWindow->display();
 
 	frameEndTime = mClock.getElapsedTime().asMilliseconds();
 }
